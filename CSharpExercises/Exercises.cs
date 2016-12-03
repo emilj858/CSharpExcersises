@@ -236,10 +236,13 @@ namespace CSharpExercises
 
         // 19. Create a method called MortgageCalculator that accepts 2 decimals representing loan balance and interest rate, an integer representing loan term in years, and an integer representing the payment period.
         /* Payment periods: 1 - Monthly, 2 - Bi-Monthly (Every 2 months) */
-        public static double MortgageCalculator (double LoanBalance, double IntRate, LoanTerm, double PaymentPer)
+        public static double MortgageCalculator (double LoanBalance, double IntRate,int LoanTerm, int PaymentPer)
         {
             double payment = 0;
-            payment = 
+            double ratePer = (IntRate / 100) / PaymentPer;
+            double periods = LoanTerm * PaymentPer;
+            payment = LoanBalance * (ratePer * Math.Pow(1 + ratePer, periods)) / (Math.Pow(1 + ratePer, periods) - 1);
+            return (Math.Round(payment, 2));
 
         }
         // 20. Create a method called DuckGoose that accepts an integer. Iterate from 1 to this integer, building a string along the way.
@@ -270,6 +273,34 @@ namespace CSharpExercises
          * 19
          * Goose
          */
+         public static string DuckGoose(int word)
+        {
+            string output = "";
+            for (int i = 1; i <= word; i++)
+            {
+                if (i % 3 ==0 && i % 5 == 0)
+                {
+                    output += "DuckGoose";
+                }
+                else if(i % 5 == 0)
+                        {
+                    output += "Goose";
+                }
+                else if (i % 3 == 0)
+                {
+                    output += "Duck";
+                }
+                else
+                {
+                    output += i;
+                }
+                if (i < word)
+                {
+                    output += "\r\n";
+                }
+            }
+            return output;
+        }
 
         // If you've finished all these challenges, sign up for CodeWars.com and try to complete a few C# challenges there!
     }
